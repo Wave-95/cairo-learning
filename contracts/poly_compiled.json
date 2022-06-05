@@ -1,0 +1,19 @@
+{
+    "attributes": [],
+    "builtins": [],
+    "data": [],
+    "debug_info": {
+        "file_contents": {
+            "/Users/victorwu/cairo/cairo_venv/lib/python3.9/site-packages/starkware/cairo/lang/compiler/lib/registers.cairo": "# Returns the contents of the fp and pc registers of the calling function.\n# The pc register's value is the address of the instruction that follows directly after the\n# invocation of get_fp_and_pc().\nfunc get_fp_and_pc() -> (fp_val, pc_val):\n    # The call instruction itself already places the old fp and the return pc at [ap - 2], [ap - 1].\n    return (fp_val=[ap - 2], pc_val=[ap - 1])\nend\n\n# Returns the content of the ap register just before this function was invoked.\n@known_ap_change\nfunc get_ap() -> (ap_val):\n    # Once get_ap() is invoked, fp points to ap + 2 (since the call instruction placed the old fp\n    # and pc in memory, advancing ap accordingly).\n    # Hence, the desired ap value is fp - 2.\n    let (fp_val, pc_val) = get_fp_and_pc()\n    return (ap_val=fp_val - 2)\nend\n",
+            "jmp.cairo": ""
+        },
+        "instruction_locations": {}
+    },
+    "hints": {},
+    "identifiers": {},
+    "main_scope": "__main__",
+    "prime": "0x800000000000011000000000000000000000000000000000000000000000001",
+    "reference_manager": {
+        "references": []
+    }
+}

@@ -2,16 +2,18 @@
     "attributes": [],
     "builtins": [],
     "data": [
-        "0x400680017fff8000",
-        "0x0",
-        "0x400680017fff8000",
+        "0x480680017fff8000",
+        "0x2",
+        "0x48507fff7fff8000",
+        "0x482480017fff8000",
         "0x1",
-        "0x208b7fff7fff7ffe"
+        "0x10780017fff7fff",
+        "0x800000000000010fffffffffffffffffffffffffffffffffffffffffffffffe"
     ],
     "debug_info": {
         "file_contents": {
             "/Users/victorwu/cairo/cairo_venv/lib/python3.9/site-packages/starkware/cairo/lang/compiler/lib/registers.cairo": "# Returns the contents of the fp and pc registers of the calling function.\n# The pc register's value is the address of the instruction that follows directly after the\n# invocation of get_fp_and_pc().\nfunc get_fp_and_pc() -> (fp_val, pc_val):\n    # The call instruction itself already places the old fp and the return pc at [ap - 2], [ap - 1].\n    return (fp_val=[ap - 2], pc_val=[ap - 1])\nend\n\n# Returns the content of the ap register just before this function was invoked.\n@known_ap_change\nfunc get_ap() -> (ap_val):\n    # Once get_ap() is invoked, fp points to ap + 2 (since the call instruction placed the old fp\n    # and pc in memory, advancing ap accordingly).\n    # Hence, the desired ap value is fp - 2.\n    let (fp_val, pc_val) = get_fp_and_pc()\n    return (ap_val=fp_val - 2)\nend\n",
-            "memory.cairo": "func main():\n    [ap] = 0\n    [ap] = 1\n    ret\nend"
+            "jmp.cairo": "func main():\n    [ap] = 2; ap++\n\n    my_loop:\n    [ap] = [ap - 1] * [ap - 1]; ap++\n    [ap] = [ap - 1] + 1; ap++\n    jmp my_loop\nend"
         },
         "instruction_locations": {
             "0": {
@@ -28,10 +30,10 @@
                 },
                 "hints": [],
                 "inst": {
-                    "end_col": 13,
+                    "end_col": 19,
                     "end_line": 2,
                     "input_file": {
-                        "filename": "memory.cairo"
+                        "filename": "jmp.cairo"
                     },
                     "start_col": 5,
                     "start_line": 2
@@ -45,22 +47,22 @@
                 "flow_tracking_data": {
                     "ap_tracking": {
                         "group": 0,
-                        "offset": 0
+                        "offset": 1
                     },
                     "reference_ids": {}
                 },
                 "hints": [],
                 "inst": {
-                    "end_col": 13,
-                    "end_line": 3,
+                    "end_col": 37,
+                    "end_line": 5,
                     "input_file": {
-                        "filename": "memory.cairo"
+                        "filename": "jmp.cairo"
                     },
                     "start_col": 5,
-                    "start_line": 3
+                    "start_line": 5
                 }
             },
-            "4": {
+            "3": {
                 "accessible_scopes": [
                     "__main__",
                     "__main__.main"
@@ -68,19 +70,42 @@
                 "flow_tracking_data": {
                     "ap_tracking": {
                         "group": 0,
-                        "offset": 0
+                        "offset": 2
                     },
                     "reference_ids": {}
                 },
                 "hints": [],
                 "inst": {
-                    "end_col": 8,
-                    "end_line": 4,
+                    "end_col": 30,
+                    "end_line": 6,
                     "input_file": {
-                        "filename": "memory.cairo"
+                        "filename": "jmp.cairo"
                     },
                     "start_col": 5,
-                    "start_line": 4
+                    "start_line": 6
+                }
+            },
+            "5": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.main"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 0,
+                        "offset": 3
+                    },
+                    "reference_ids": {}
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 16,
+                    "end_line": 7,
+                    "input_file": {
+                        "filename": "jmp.cairo"
+                    },
+                    "start_col": 5,
+                    "start_line": 7
                 }
             }
         }
@@ -113,6 +138,10 @@
         "__main__.main.SIZEOF_LOCALS": {
             "type": "const",
             "value": 0
+        },
+        "__main__.main.my_loop": {
+            "pc": 2,
+            "type": "label"
         }
     },
     "main_scope": "__main__",
