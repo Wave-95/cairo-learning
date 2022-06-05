@@ -1,0 +1,300 @@
+{
+    "attributes": [],
+    "builtins": [],
+    "data": [
+        "0x1104800180018000",
+        "0x3",
+        "0x208b7fff7fff7ffe",
+        "0x48127ffe7fff8000",
+        "0x48127ffd7fff8000",
+        "0x480080017ffe8000",
+        "0x208b7fff7fff7ffe"
+    ],
+    "debug_info": {
+        "file_contents": {
+            "/Users/victorwu/cairo/cairo_venv/lib/python3.9/site-packages/starkware/cairo/lang/compiler/lib/registers.cairo": "# Returns the contents of the fp and pc registers of the calling function.\n# The pc register's value is the address of the instruction that follows directly after the\n# invocation of get_fp_and_pc().\nfunc get_fp_and_pc() -> (fp_val, pc_val):\n    # The call instruction itself already places the old fp and the return pc at [ap - 2], [ap - 1].\n    return (fp_val=[ap - 2], pc_val=[ap - 1])\nend\n\n# Returns the content of the ap register just before this function was invoked.\n@known_ap_change\nfunc get_ap() -> (ap_val):\n    # Once get_ap() is invoked, fp points to ap + 2 (since the call instruction placed the old fp\n    # and pc in memory, advancing ap accordingly).\n    # Hence, the desired ap value is fp - 2.\n    let (fp_val, pc_val) = get_fp_and_pc()\n    return (ap_val=fp_val - 2)\nend\n",
+            "get_registers.cairo": "func main():\n    get_registers()\n    ret\nend\n\nfunc get_registers():\n    tempvar current_ap = [ap - 2]\n    tempvar current_fp = [ap - 3]\n    tempvar current_pc = [current_ap + 1]\n    ret\nend"
+        },
+        "instruction_locations": {
+            "0": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.main"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 0,
+                        "offset": 0
+                    },
+                    "reference_ids": {}
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 20,
+                    "end_line": 2,
+                    "input_file": {
+                        "filename": "get_registers.cairo"
+                    },
+                    "start_col": 5,
+                    "start_line": 2
+                }
+            },
+            "2": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.main"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 1,
+                        "offset": 0
+                    },
+                    "reference_ids": {}
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 8,
+                    "end_line": 3,
+                    "input_file": {
+                        "filename": "get_registers.cairo"
+                    },
+                    "start_col": 5,
+                    "start_line": 3
+                }
+            },
+            "3": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.get_registers"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 2,
+                        "offset": 0
+                    },
+                    "reference_ids": {}
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 34,
+                    "end_line": 7,
+                    "input_file": {
+                        "filename": "get_registers.cairo"
+                    },
+                    "start_col": 26,
+                    "start_line": 7
+                }
+            },
+            "4": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.get_registers"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 2,
+                        "offset": 1
+                    },
+                    "reference_ids": {
+                        "__main__.get_registers.current_ap": 0
+                    }
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 34,
+                    "end_line": 8,
+                    "input_file": {
+                        "filename": "get_registers.cairo"
+                    },
+                    "start_col": 26,
+                    "start_line": 8
+                }
+            },
+            "5": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.get_registers"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 2,
+                        "offset": 2
+                    },
+                    "reference_ids": {
+                        "__main__.get_registers.current_ap": 0,
+                        "__main__.get_registers.current_fp": 1
+                    }
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 42,
+                    "end_line": 9,
+                    "input_file": {
+                        "filename": "get_registers.cairo"
+                    },
+                    "start_col": 26,
+                    "start_line": 9
+                }
+            },
+            "6": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.get_registers"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 2,
+                        "offset": 3
+                    },
+                    "reference_ids": {
+                        "__main__.get_registers.current_ap": 0,
+                        "__main__.get_registers.current_fp": 1,
+                        "__main__.get_registers.current_pc": 2
+                    }
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 8,
+                    "end_line": 10,
+                    "input_file": {
+                        "filename": "get_registers.cairo"
+                    },
+                    "start_col": 5,
+                    "start_line": 10
+                }
+            }
+        }
+    },
+    "hints": {},
+    "identifiers": {
+        "__main__.get_registers": {
+            "decorators": [],
+            "pc": 3,
+            "type": "function"
+        },
+        "__main__.get_registers.Args": {
+            "full_name": "__main__.get_registers.Args",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "__main__.get_registers.ImplicitArgs": {
+            "full_name": "__main__.get_registers.ImplicitArgs",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "__main__.get_registers.Return": {
+            "full_name": "__main__.get_registers.Return",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "__main__.get_registers.SIZEOF_LOCALS": {
+            "type": "const",
+            "value": 0
+        },
+        "__main__.get_registers.current_ap": {
+            "cairo_type": "felt",
+            "full_name": "__main__.get_registers.current_ap",
+            "references": [
+                {
+                    "ap_tracking_data": {
+                        "group": 2,
+                        "offset": 1
+                    },
+                    "pc": 4,
+                    "value": "[cast(ap + (-1), felt*)]"
+                }
+            ],
+            "type": "reference"
+        },
+        "__main__.get_registers.current_fp": {
+            "cairo_type": "felt",
+            "full_name": "__main__.get_registers.current_fp",
+            "references": [
+                {
+                    "ap_tracking_data": {
+                        "group": 2,
+                        "offset": 2
+                    },
+                    "pc": 5,
+                    "value": "[cast(ap + (-1), felt*)]"
+                }
+            ],
+            "type": "reference"
+        },
+        "__main__.get_registers.current_pc": {
+            "cairo_type": "felt",
+            "full_name": "__main__.get_registers.current_pc",
+            "references": [
+                {
+                    "ap_tracking_data": {
+                        "group": 2,
+                        "offset": 3
+                    },
+                    "pc": 6,
+                    "value": "[cast(ap + (-1), felt*)]"
+                }
+            ],
+            "type": "reference"
+        },
+        "__main__.main": {
+            "decorators": [],
+            "pc": 0,
+            "type": "function"
+        },
+        "__main__.main.Args": {
+            "full_name": "__main__.main.Args",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "__main__.main.ImplicitArgs": {
+            "full_name": "__main__.main.ImplicitArgs",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "__main__.main.Return": {
+            "full_name": "__main__.main.Return",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "__main__.main.SIZEOF_LOCALS": {
+            "type": "const",
+            "value": 0
+        }
+    },
+    "main_scope": "__main__",
+    "prime": "0x800000000000011000000000000000000000000000000000000000000000001",
+    "reference_manager": {
+        "references": [
+            {
+                "ap_tracking_data": {
+                    "group": 2,
+                    "offset": 1
+                },
+                "pc": 4,
+                "value": "[cast(ap + (-1), felt*)]"
+            },
+            {
+                "ap_tracking_data": {
+                    "group": 2,
+                    "offset": 2
+                },
+                "pc": 5,
+                "value": "[cast(ap + (-1), felt*)]"
+            },
+            {
+                "ap_tracking_data": {
+                    "group": 2,
+                    "offset": 3
+                },
+                "pc": 6,
+                "value": "[cast(ap + (-1), felt*)]"
+            }
+        ]
+    }
+}
