@@ -1,0 +1,536 @@
+{
+    "attributes": [],
+    "builtins": [],
+    "data": [
+        "0x208b7fff7fff7ffe",
+        "0x1104800180018000",
+        "0x800000000000011000000000000000000000000000000000000000000000000",
+        "0x482480017ffe8000",
+        "0x800000000000010ffffffffffffffffffffffffffffffffffffffffffffffff",
+        "0x208b7fff7fff7ffe",
+        "0x480680017fff8000",
+        "0x1",
+        "0x480680017fff8000",
+        "0x2",
+        "0x1104800180018000",
+        "0x800000000000010fffffffffffffffffffffffffffffffffffffffffffffff8",
+        "0x482480017fff8000",
+        "0x800000000000010ffffffffffffffffffffffffffffffffffffffffffffffff",
+        "0x400080007fff8000",
+        "0x208b7fff7fff7ffe",
+        "0x1104800180018000",
+        "0x800000000000010fffffffffffffffffffffffffffffffffffffffffffffff7",
+        "0x208b7fff7fff7ffe"
+    ],
+    "debug_info": {
+        "file_contents": {
+            "/Users/victorwu/cairo/cairo_venv/lib/python3.9/site-packages/starkware/cairo/lang/compiler/lib/registers.cairo": "# Returns the contents of the fp and pc registers of the calling function.\n# The pc register's value is the address of the instruction that follows directly after the\n# invocation of get_fp_and_pc().\nfunc get_fp_and_pc() -> (fp_val, pc_val):\n    # The call instruction itself already places the old fp and the return pc at [ap - 2], [ap - 1].\n    return (fp_val=[ap - 2], pc_val=[ap - 1])\nend\n\n# Returns the content of the ap register just before this function was invoked.\n@known_ap_change\nfunc get_ap() -> (ap_val):\n    # Once get_ap() is invoked, fp points to ap + 2 (since the call instruction placed the old fp\n    # and pc in memory, advancing ap accordingly).\n    # Hence, the desired ap value is fp - 2.\n    let (fp_val, pc_val) = get_fp_and_pc()\n    return (ap_val=fp_val - 2)\nend\n",
+            "new.cairo": "struct MyStruct:\n    member a : felt\n    member b : felt\nend\n\nfunc foo():\n    tempvar ptr : MyStruct* = new MyStruct(a=1, b=2)\n    [ap] = ptr.a\n    ret\nend\n\nfunc main():\n    foo()\n    ret\nend"
+        },
+        "instruction_locations": {
+            "0": {
+                "accessible_scopes": [
+                    "starkware.cairo.lang.compiler.lib.registers",
+                    "starkware.cairo.lang.compiler.lib.registers.get_fp_and_pc"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 0,
+                        "offset": 0
+                    },
+                    "reference_ids": {}
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 46,
+                    "end_line": 6,
+                    "input_file": {
+                        "filename": "/Users/victorwu/cairo/cairo_venv/lib/python3.9/site-packages/starkware/cairo/lang/compiler/lib/registers.cairo"
+                    },
+                    "start_col": 5,
+                    "start_line": 6
+                }
+            },
+            "1": {
+                "accessible_scopes": [
+                    "starkware.cairo.lang.compiler.lib.registers",
+                    "starkware.cairo.lang.compiler.lib.registers.get_ap"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 1,
+                        "offset": 0
+                    },
+                    "reference_ids": {}
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 43,
+                    "end_line": 15,
+                    "input_file": {
+                        "filename": "/Users/victorwu/cairo/cairo_venv/lib/python3.9/site-packages/starkware/cairo/lang/compiler/lib/registers.cairo"
+                    },
+                    "start_col": 28,
+                    "start_line": 15
+                }
+            },
+            "3": {
+                "accessible_scopes": [
+                    "starkware.cairo.lang.compiler.lib.registers",
+                    "starkware.cairo.lang.compiler.lib.registers.get_ap"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 1,
+                        "offset": 2
+                    },
+                    "reference_ids": {
+                        "starkware.cairo.lang.compiler.lib.registers.get_ap.fp_val": 0,
+                        "starkware.cairo.lang.compiler.lib.registers.get_ap.pc_val": 1
+                    }
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 30,
+                    "end_line": 16,
+                    "input_file": {
+                        "filename": "/Users/victorwu/cairo/cairo_venv/lib/python3.9/site-packages/starkware/cairo/lang/compiler/lib/registers.cairo"
+                    },
+                    "start_col": 20,
+                    "start_line": 16
+                }
+            },
+            "5": {
+                "accessible_scopes": [
+                    "starkware.cairo.lang.compiler.lib.registers",
+                    "starkware.cairo.lang.compiler.lib.registers.get_ap"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 1,
+                        "offset": 3
+                    },
+                    "reference_ids": {
+                        "starkware.cairo.lang.compiler.lib.registers.get_ap.fp_val": 0,
+                        "starkware.cairo.lang.compiler.lib.registers.get_ap.pc_val": 1
+                    }
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 31,
+                    "end_line": 16,
+                    "input_file": {
+                        "filename": "/Users/victorwu/cairo/cairo_venv/lib/python3.9/site-packages/starkware/cairo/lang/compiler/lib/registers.cairo"
+                    },
+                    "start_col": 5,
+                    "start_line": 16
+                }
+            },
+            "6": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.foo"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 2,
+                        "offset": 0
+                    },
+                    "reference_ids": {}
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 47,
+                    "end_line": 7,
+                    "input_file": {
+                        "filename": "new.cairo"
+                    },
+                    "start_col": 46,
+                    "start_line": 7
+                }
+            },
+            "8": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.foo"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 2,
+                        "offset": 1
+                    },
+                    "reference_ids": {}
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 52,
+                    "end_line": 7,
+                    "input_file": {
+                        "filename": "new.cairo"
+                    },
+                    "start_col": 51,
+                    "start_line": 7
+                }
+            },
+            "10": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.foo"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 2,
+                        "offset": 2
+                    },
+                    "reference_ids": {}
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 53,
+                    "end_line": 7,
+                    "input_file": {
+                        "filename": "new.cairo"
+                    },
+                    "start_col": 31,
+                    "start_line": 7
+                }
+            },
+            "12": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.foo"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 2,
+                        "offset": 7
+                    },
+                    "reference_ids": {}
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 53,
+                    "end_line": 7,
+                    "input_file": {
+                        "filename": "new.cairo"
+                    },
+                    "start_col": 31,
+                    "start_line": 7
+                }
+            },
+            "14": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.foo"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 2,
+                        "offset": 8
+                    },
+                    "reference_ids": {
+                        "__main__.foo.ptr": 2
+                    }
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 17,
+                    "end_line": 8,
+                    "input_file": {
+                        "filename": "new.cairo"
+                    },
+                    "start_col": 5,
+                    "start_line": 8
+                }
+            },
+            "15": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.foo"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 2,
+                        "offset": 8
+                    },
+                    "reference_ids": {
+                        "__main__.foo.ptr": 2
+                    }
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 8,
+                    "end_line": 9,
+                    "input_file": {
+                        "filename": "new.cairo"
+                    },
+                    "start_col": 5,
+                    "start_line": 9
+                }
+            },
+            "16": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.main"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 3,
+                        "offset": 0
+                    },
+                    "reference_ids": {}
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 10,
+                    "end_line": 13,
+                    "input_file": {
+                        "filename": "new.cairo"
+                    },
+                    "start_col": 5,
+                    "start_line": 13
+                }
+            },
+            "18": {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.main"
+                ],
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 3,
+                        "offset": 10
+                    },
+                    "reference_ids": {}
+                },
+                "hints": [],
+                "inst": {
+                    "end_col": 8,
+                    "end_line": 14,
+                    "input_file": {
+                        "filename": "new.cairo"
+                    },
+                    "start_col": 5,
+                    "start_line": 14
+                }
+            }
+        }
+    },
+    "hints": {},
+    "identifiers": {
+        "__main__.MyStruct": {
+            "full_name": "__main__.MyStruct",
+            "members": {
+                "a": {
+                    "cairo_type": "felt",
+                    "offset": 0
+                },
+                "b": {
+                    "cairo_type": "felt",
+                    "offset": 1
+                }
+            },
+            "size": 2,
+            "type": "struct"
+        },
+        "__main__.foo": {
+            "decorators": [],
+            "pc": 6,
+            "type": "function"
+        },
+        "__main__.foo.Args": {
+            "full_name": "__main__.foo.Args",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "__main__.foo.ImplicitArgs": {
+            "full_name": "__main__.foo.ImplicitArgs",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "__main__.foo.Return": {
+            "full_name": "__main__.foo.Return",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "__main__.foo.SIZEOF_LOCALS": {
+            "type": "const",
+            "value": 0
+        },
+        "__main__.foo.ptr": {
+            "cairo_type": "__main__.MyStruct*",
+            "full_name": "__main__.foo.ptr",
+            "references": [
+                {
+                    "ap_tracking_data": {
+                        "group": 2,
+                        "offset": 8
+                    },
+                    "pc": 14,
+                    "value": "[cast(ap + (-1), __main__.MyStruct**)]"
+                }
+            ],
+            "type": "reference"
+        },
+        "__main__.main": {
+            "decorators": [],
+            "pc": 16,
+            "type": "function"
+        },
+        "__main__.main.Args": {
+            "full_name": "__main__.main.Args",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "__main__.main.ImplicitArgs": {
+            "full_name": "__main__.main.ImplicitArgs",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "__main__.main.Return": {
+            "full_name": "__main__.main.Return",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "__main__.main.SIZEOF_LOCALS": {
+            "type": "const",
+            "value": 0
+        },
+        "starkware.cairo.lang.compiler.lib.registers.get_ap": {
+            "decorators": [
+                "known_ap_change"
+            ],
+            "pc": 1,
+            "type": "function"
+        },
+        "starkware.cairo.lang.compiler.lib.registers.get_ap.Args": {
+            "full_name": "starkware.cairo.lang.compiler.lib.registers.get_ap.Args",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "starkware.cairo.lang.compiler.lib.registers.get_ap.ImplicitArgs": {
+            "full_name": "starkware.cairo.lang.compiler.lib.registers.get_ap.ImplicitArgs",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "starkware.cairo.lang.compiler.lib.registers.get_ap.Return": {
+            "full_name": "starkware.cairo.lang.compiler.lib.registers.get_ap.Return",
+            "members": {
+                "ap_val": {
+                    "cairo_type": "felt",
+                    "offset": 0
+                }
+            },
+            "size": 1,
+            "type": "struct"
+        },
+        "starkware.cairo.lang.compiler.lib.registers.get_ap.SIZEOF_LOCALS": {
+            "type": "const",
+            "value": 0
+        },
+        "starkware.cairo.lang.compiler.lib.registers.get_ap.fp_val": {
+            "cairo_type": "felt",
+            "full_name": "starkware.cairo.lang.compiler.lib.registers.get_ap.fp_val",
+            "references": [
+                {
+                    "ap_tracking_data": {
+                        "group": 1,
+                        "offset": 2
+                    },
+                    "pc": 3,
+                    "value": "[cast(ap + (-2), felt*)]"
+                }
+            ],
+            "type": "reference"
+        },
+        "starkware.cairo.lang.compiler.lib.registers.get_ap.pc_val": {
+            "cairo_type": "felt",
+            "full_name": "starkware.cairo.lang.compiler.lib.registers.get_ap.pc_val",
+            "references": [
+                {
+                    "ap_tracking_data": {
+                        "group": 1,
+                        "offset": 2
+                    },
+                    "pc": 3,
+                    "value": "[cast(ap + (-1), felt*)]"
+                }
+            ],
+            "type": "reference"
+        },
+        "starkware.cairo.lang.compiler.lib.registers.get_fp_and_pc": {
+            "decorators": [],
+            "pc": 0,
+            "type": "function"
+        },
+        "starkware.cairo.lang.compiler.lib.registers.get_fp_and_pc.Args": {
+            "full_name": "starkware.cairo.lang.compiler.lib.registers.get_fp_and_pc.Args",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "starkware.cairo.lang.compiler.lib.registers.get_fp_and_pc.ImplicitArgs": {
+            "full_name": "starkware.cairo.lang.compiler.lib.registers.get_fp_and_pc.ImplicitArgs",
+            "members": {},
+            "size": 0,
+            "type": "struct"
+        },
+        "starkware.cairo.lang.compiler.lib.registers.get_fp_and_pc.Return": {
+            "full_name": "starkware.cairo.lang.compiler.lib.registers.get_fp_and_pc.Return",
+            "members": {
+                "fp_val": {
+                    "cairo_type": "felt",
+                    "offset": 0
+                },
+                "pc_val": {
+                    "cairo_type": "felt",
+                    "offset": 1
+                }
+            },
+            "size": 2,
+            "type": "struct"
+        },
+        "starkware.cairo.lang.compiler.lib.registers.get_fp_and_pc.SIZEOF_LOCALS": {
+            "type": "const",
+            "value": 0
+        }
+    },
+    "main_scope": "__main__",
+    "prime": "0x800000000000011000000000000000000000000000000000000000000000001",
+    "reference_manager": {
+        "references": [
+            {
+                "ap_tracking_data": {
+                    "group": 1,
+                    "offset": 2
+                },
+                "pc": 3,
+                "value": "[cast(ap + (-2), felt*)]"
+            },
+            {
+                "ap_tracking_data": {
+                    "group": 1,
+                    "offset": 2
+                },
+                "pc": 3,
+                "value": "[cast(ap + (-1), felt*)]"
+            },
+            {
+                "ap_tracking_data": {
+                    "group": 2,
+                    "offset": 8
+                },
+                "pc": 14,
+                "value": "[cast(ap + (-1), __main__.MyStruct**)]"
+            }
+        ]
+    }
+}
